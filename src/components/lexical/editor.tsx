@@ -2,6 +2,7 @@ import type { ComponentProps, FC } from "react";
 import type { EditorFocusOptions } from "lexical/LexicalEditor";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { ContentEditable, EditorContainer, Placeholder } from "./styled";
@@ -14,11 +15,13 @@ const initialConfig: ComponentProps<typeof LexicalComposer>["initialConfig"] = {
 export type EditorProps = {
   placeholder?: string;
   autoFocus?: boolean;
+  history?: boolean;
 } & EditorFocusOptions;
 
 export const Editor: FC<EditorProps> = ({
   placeholder,
   autoFocus,
+  history,
   defaultSelection,
 }) => {
   return (
@@ -31,6 +34,7 @@ export const Editor: FC<EditorProps> = ({
         />
       </EditorContainer>
       {autoFocus ? <AutoFocusPlugin defaultSelection={defaultSelection} /> : <></>}
+      {history ? <HistoryPlugin /> : <></>}
     </LexicalComposer>
   );
 };
