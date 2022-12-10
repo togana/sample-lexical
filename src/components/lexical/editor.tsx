@@ -3,6 +3,7 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { ContentEditable, EditorContainer, Placeholder } from "./styled";
+import { AutoFocusPlugin } from "./plugins/auto-focus-plugin";
 
 const initialConfig: ComponentProps<typeof LexicalComposer>["initialConfig"] = {
   namespace: "SampleEditor",
@@ -25,6 +26,7 @@ export const Editor: FC<EditorProps> = ({
           ErrorBoundary={LexicalErrorBoundary}
         />
       </EditorContainer>
+      <AutoFocusPlugin />
     </LexicalComposer>
   );
 };
