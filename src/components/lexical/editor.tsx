@@ -1,9 +1,10 @@
 import type { ComponentProps, FC } from "react";
+import type { EditorFocusOptions } from "lexical/LexicalEditor";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { ContentEditable, EditorContainer, Placeholder } from "./styled";
-import { AutoFocusPlugin } from "./plugins/auto-focus-plugin";
 
 const initialConfig: ComponentProps<typeof LexicalComposer>["initialConfig"] = {
   namespace: "SampleEditor",
@@ -13,11 +14,12 @@ const initialConfig: ComponentProps<typeof LexicalComposer>["initialConfig"] = {
 export type EditorProps = {
   placeholder?: string;
   autoFocus?: boolean;
-}
+} & EditorFocusOptions;
 
 export const Editor: FC<EditorProps> = ({
   placeholder,
   autoFocus,
+  defaultSelection,
 }) => {
   return (
     <LexicalComposer initialConfig={initialConfig}>
@@ -28,7 +30,7 @@ export const Editor: FC<EditorProps> = ({
           ErrorBoundary={LexicalErrorBoundary}
         />
       </EditorContainer>
-      <AutoFocusPlugin autoFocus={autoFocus} />
+      {autoFocus ? <AutoFocusPlugin defaultSelection={defaultSelection} /> : <></>}
     </LexicalComposer>
   );
 };
