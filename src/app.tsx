@@ -7,6 +7,7 @@ export const App: FC = () => {
       <Editor
         autoFocus
         history
+        autoLink
         placeholder="いまなにしている？"
       />
     </div>

@@ -4,11 +4,15 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { AutoLinkPlugin, AutoLinkNode } from "./plugins/auto-link-plugin";
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { ContentEditable, EditorContainer, Placeholder } from "./styled";
 
 const initialConfig: ComponentProps<typeof LexicalComposer>["initialConfig"] = {
   namespace: "SampleEditor",
+  nodes: [
+    AutoLinkNode,
+  ],
   onError: (error) => console.error(error),
 };
 
@@ -16,12 +20,14 @@ export type EditorProps = {
   placeholder?: string;
   autoFocus?: boolean;
   history?: boolean;
+  autoLink?: boolean;
 } & EditorFocusOptions;
 
 export const Editor: FC<EditorProps> = ({
   placeholder,
   autoFocus,
   history,
+  autoLink,
   defaultSelection,
 }) => {
   return (
@@ -35,6 +41,7 @@ export const Editor: FC<EditorProps> = ({
       </EditorContainer>
       {autoFocus ? <AutoFocusPlugin defaultSelection={defaultSelection} /> : <></>}
       {history ? <HistoryPlugin /> : <></>}
+      {autoLink ? <AutoLinkPlugin /> : <></>}
     </LexicalComposer>
   );
 };
