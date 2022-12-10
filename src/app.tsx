@@ -4,7 +4,10 @@ import { Editor } from "./components/lexical";
 export const App: FC = () => {
   return (
     <div>
-      <Editor placeholder="いまなにしている？" />
+      <Editor
+        autoFocus
+        placeholder="いまなにしている？"
+      />
     </div>
   );
 }

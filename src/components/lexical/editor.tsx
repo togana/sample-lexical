@@ -12,10 +12,12 @@ const initialConfig: ComponentProps<typeof LexicalComposer>["initialConfig"] = {
 
 export type EditorProps = {
   placeholder?: string;
+  autoFocus?: boolean;
 }
 
 export const Editor: FC<EditorProps> = ({
   placeholder,
+  autoFocus,
 }) => {
   return (
     <LexicalComposer initialConfig={initialConfig}>
@@ -26,7 +28,7 @@ export const Editor: FC<EditorProps> = ({
           ErrorBoundary={LexicalErrorBoundary}
         />
       </EditorContainer>
-      <AutoFocusPlugin />
+      <AutoFocusPlugin autoFocus={autoFocus} />
     </LexicalComposer>
   );
 };
