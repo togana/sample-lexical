@@ -2,13 +2,7 @@ import type { ComponentProps, FC } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
-import { styled } from "@stitches/react";
-import { Placeholder } from "./placeholder";
-import { ContentEditable } from "./content-editable";
-
-const EditorContainer = styled('div', {
-  position: 'relative',
-});
+import { ContentEditable, EditorContainer, Placeholder } from "./styled";
 
 const initialConfig: ComponentProps<typeof LexicalComposer>["initialConfig"] = {
   namespace: "SampleEditor",
